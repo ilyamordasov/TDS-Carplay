@@ -437,7 +437,7 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate, CPM
             ]
             template.leadingNavigationBarButtons = [
                 makeBarButton(title: "C+", command: .contentZoomIn),
-                makeBarButton(title: "C-", command: .contentZoomOut)
+                makeKinopoiskBarButton()
             ]
             template.trailingNavigationBarButtons = [
                 makeBarButton(title: "Web", command: .bringBrowserToCarPlay),
@@ -868,6 +868,21 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate, CPM
         }
         button.image = UIImage(systemName: systemImage)
         return button
+    }
+
+    private func makeKinopoiskBarButton() -> CPBarButton {
+        CPBarButton(title: "Kino") { [weak self] _ in
+            self?.openKinopoiskInCarPlay()
+        }
+    }
+
+    private func openKinopoiskInCarPlay() {
+        let url = CustomWebViewController.kinopoiskURL
+        mapControlMode = .browser
+        TDSVideoShared.shared.CarPlayComp?(
+            .init(type: .web, URL: url, reloadWeb: false)
+        )
+        CustomWebViewController.shared.loadURL(url)
     }
 
     private func makeBarButton(title: String, command: TDSCarPlayControlCommand) -> CPBarButton {
