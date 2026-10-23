@@ -22,6 +22,7 @@ class CustomWebViewController: CarPlayViewControllerProtocol, WKNavigationDelega
 
     static let shared = CustomWebViewController()
     static let youtubeURL = URL(string: "https://www.youtube.com")!
+    static let kinopoiskURL = URL(string: "https://hd.kinopoisk.ru/")!
     static let youtubeSignInURL = URL(string: "https://www.youtube.com/signin?action_handle_signin=true&next=%2F")!
     static let youtubeBrowseZoom: CGFloat = 0.60
     static let youtubeFullscreenEnabledKey = "YouTubeFullscreenEnabled"
